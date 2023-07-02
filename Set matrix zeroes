@@ -1,5 +1,8 @@
 Question link: https://leetcode.com/problems/set-matrix-zeroes/
 
+just a bit tricky.
+refer to this video for solution if necessary: https://www.youtube.com/watch?v=djt9mwch-Xo
+
 class Solution {
 public:
     void setZeroes(vector<vector<int>>& matrix) {
