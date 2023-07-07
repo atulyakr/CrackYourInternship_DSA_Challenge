@@ -1,0 +1,28 @@
+
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+       int count=0;
+       map<int, int>mop;
+       mop.insert({0,1});
+       int sum=0;
+       for(int i=0;i<nums.size();i++)
+       {
+           sum+=nums[i];
+           auto finder=mop.find(sum-k);
+           if(finder!=mop.end())
+           {
+               count+=finder->second;
+           }
+
+           finder=mop.find(sum);
+           if(finder!=mop.end())
+           {
+               finder->second++;
+           }
+
+           else mop.insert({sum,1});
+       }
+       return count;
+    }
+};
