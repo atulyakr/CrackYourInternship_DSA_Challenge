@@ -1,7 +1,7 @@
 
 class Solution {
 public:
-    //  funcion to check validility of neighbor
+   
     bool isValidNeighbor(int x, int y, vector<vector<int>>& board) {
         return (x >= 0 && x < board.size() && y >= 0 && y < board[0].size());
     }
