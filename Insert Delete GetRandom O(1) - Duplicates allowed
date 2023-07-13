@@ -4,9 +4,7 @@ public:
     vector<int>v;
     unordered_map<int,int>mp;
     RandomizedCollection() 
-    {
-       
-    }
+    {}
     
     bool insert(int val) 
     {
