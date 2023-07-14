@@ -1,0 +1,48 @@
+
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char>dabba;
+        for(int i=0;i<s.size();i++)
+        {
+            
+            if(s[i]=='(' || s[i]=='{' || s[i]=='[')
+            {
+                dabba.push(s[i]);
+            }
+            else if(dabba.empty() && (s[i]==')' || s[i]=='}' || s[i]==']'))
+            {
+                return false;
+            }
+            
+            else if(s[i]==')' && dabba.top()=='(')
+            {
+                dabba.pop();
+            }
+
+            else if(s[i]=='}' && dabba.top()=='{')
+            {
+                dabba.pop();
+            }
+
+            else if(s[i]==']' && dabba.top()=='[')
+            {
+                dabba.pop();
+            }
+            else{
+                break;
+            }
+           
+        }
+        
+        if(dabba.empty())
+        {
+            return true;
+        }
+         
+        else{
+           
+            return false;
+        }
+    }
+};
