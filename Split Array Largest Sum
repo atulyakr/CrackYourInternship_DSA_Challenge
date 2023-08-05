@@ -12,6 +12,7 @@ public:
             for(int i=0;i<n;++i){
                 if(tempsum+nums[i]<=mid) tempsum+=nums[i];
                 else count++,tempsum=nums[i];
+
             }
             count++; 
             
