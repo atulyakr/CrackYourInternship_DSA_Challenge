@@ -1,0 +1,18 @@
+class StockSpanner {
+public:
+    StockSpanner() {
+        
+    }
+    vector<int>stprice;
+    int next(int price) {
+        stprice.push_back(price);
+        int count=0;
+        int n=stprice.size()-1;
+        while(n>=0 && stprice[n]<=price)
+        {
+            count++;
+            n--;
+        }
+        return count;
+    }
+};
