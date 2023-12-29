@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int t[301][11];
+    int solve(vector<int>&jd,int i,int n,int d)
+    {
+       
+        
+        if(d==1)
+        { 
+            int maxd=jd[i]; 
+            for(int j=i;j<n;j++)
+                maxd=max(maxd,jd[j]);
+            return maxd;
+        }
+        
+        if(t[i][d]!=-1)
+        {
+            return t[i][d];
+        }
+
+        int finalrs=INT_MAX;
+        int maxi=INT_MIN;
+
+        for(int k=i;k<=n-d;k++)
+        {
+            maxi=max(maxi,jd[k]);
+            int result=maxi+solve(jd,k+1,n,d-1);
+            finalrs=min(finalrs,result);
+        }
+        
+        
+        return t[i][d]=finalrs;
+    }
+    int minDifficulty(vector<int>& jd, int d) {
+        int n=jd.size();
+
+        if(d>n)
+            return -1;
+
+        memset(t,-1,sizeof(t));
+        return solve(jd,0,n,d);
+    }
+};
