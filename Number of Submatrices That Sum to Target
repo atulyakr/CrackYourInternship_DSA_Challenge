@@ -1,0 +1,35 @@
+
+class Solution {
+public:
+    int numSubmatrixSumTarget(vector<vector<int>>& matrix, int k) {
+        int count=0;
+        int rows=matrix.size();
+        int cols=matrix[0].size();
+
+        for (int i=0;i<rows;i++)
+        {
+            for(int j=1;j<cols;j++){
+                matrix[i][j]+=matrix[i][j-1];
+            }
+        }
+
+        for(int scol=0;scol<cols;scol++){
+            for(int curcol=scol;curcol<cols;curcol++){
+
+                int culsum=0;
+                unordered_map<int,int>mp;
+                mp.insert({0,1});
+
+                for(int i=0;i<rows;i++){
+                    culsum+=matrix[i][curcol]- (scol>0 ? matrix[i][scol-1] : 0);
+                    auto itr=mp.find(culsum-k);
+                    if(itr!=mp.end()){
+                        count+=itr->second;
+                    }
+                    mp[culsum]++;
+                }
+            }
+        }
+        return count;
+    }
+};
