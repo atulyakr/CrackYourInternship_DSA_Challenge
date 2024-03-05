@@ -1,0 +1,38 @@
+
+class Solution {
+public:
+    
+    bool solve(vector<int>&nums,int i,int aim,vector<vector<int>>&dp){
+        
+        int n=nums.size();
+        if(i==n ){
+            return 0;
+        }
+        if(aim<0)
+            return 0;
+
+        if(aim==0)
+            return 1;
+        if(dp[i][aim]!=-1) 
+            return dp[i][aim];
+
+        bool take=solve(nums,i+1,aim-nums[i],dp);
+        bool dontake=solve(nums,i+1,aim,dp);
+
+        return dp[i][aim]=(take || dontake);
+
+    }
+    bool canPartition(vector<int>& nums) {
+        int aim=0;
+        
+        for(int i=0;i<nums.size();i++){
+            aim+=nums[i];
+        }
+        if(aim%2!=0){
+            return false;
+        }
+        aim/=2;
+        vector<vector<int>>dp(nums.size(),vector<int>(aim+1,-1));
+        return solve(nums,0,aim,dp);
+    }
+};
